@@ -33,6 +33,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -157,15 +158,17 @@ fun DogItem(
             )
         }
 
-        DogHobby(
-            dog.hobbies,
-            modifier = Modifier.padding(
-                start = dimensionResource(R.dimen.padding_medium),
-                top = dimensionResource(R.dimen.padding_small),
-                end = dimensionResource(R.dimen.padding_medium),
-                bottom = dimensionResource(R.dimen.padding_medium)
+        if (expanded) {
+            DogHobby(
+                dog.hobbies,
+                modifier = Modifier.padding(
+                    start = dimensionResource(R.dimen.padding_medium),
+                    top = dimensionResource(R.dimen.padding_small),
+                    end = dimensionResource(R.dimen.padding_medium),
+                    bottom = dimensionResource(R.dimen.padding_medium)
+                )
             )
-        )
+        }
     }
 }
 
@@ -187,7 +190,7 @@ private fun DogItemButton(
         modifier = modifier
     ) {
         Icon(
-            imageVector = Icons.Filled.ExpandMore,
+            imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
             contentDescription = stringResource(R.string.expand_button_content_description),
             tint = MaterialTheme.colorScheme.secondary
         )
