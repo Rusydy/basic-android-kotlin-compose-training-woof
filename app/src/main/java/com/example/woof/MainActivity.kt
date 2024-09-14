@@ -156,6 +156,16 @@ fun DogItem(
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
         }
+
+        DogHobby(
+            dog.hobbies,
+            modifier = Modifier.padding(
+                start = dimensionResource(R.dimen.padding_medium),
+                top = dimensionResource(R.dimen.padding_small),
+                end = dimensionResource(R.dimen.padding_medium),
+                bottom = dimensionResource(R.dimen.padding_medium)
+            )
+        )
     }
 }
 
@@ -209,6 +219,33 @@ fun DogIcon(
         contentDescription = null
     )
 }
+
+/**
+ * Composable that displays a dog's hobby.
+ *
+ * @param dogHobby is the resource ID for the string of the dog's hobby
+ * @param modifier modifiers to set to this composable
+ */
+@Composable
+fun DogHobby(
+    @StringRes dogHobby: Int,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = stringResource(R.string.about),
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small))
+        )
+        Text(
+            text = stringResource(dogHobby),
+            style = MaterialTheme.typography.bodyLarge,
+        )
+    }
+}
+
 
 /**
  * Composable that displays a dog's name and age.
